@@ -1,0 +1,24 @@
+{
+  "name": "insta_like",
+  "version": "1.0.0",
+  "description": "In this Project I want to show how like/dislike is designed in a production grade social media platform. I have designed the code which can handle millions of like/dislike concurrenlty along with managing crtical aspects such as idempotency, batching. \r <img width=\"1402\" height=\"846\" alt=\"image\" src=\"https://github.com/user-attachments/assets/c1dc0622-6519-47da-a569-32170949798d\" />",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.9",
+    "ts-node-dev": "^2.0.0"
+  }
+}
