@@ -1,5 +1,8 @@
-export interface LikeJob{
-    userId: string;
-    postId: string;
-    like: 1 | -1;
+import { LikeEvent } from "../enum/likes.enum";
+
+export interface LikeJob {
+  userId: string;
+  postId: string;
+  eventType: LikeEvent;
+  timestamp: number;
 }
