@@ -2,11 +2,21 @@ import type { Request, Response } from "express";
 import { addLikeJob } from "../services/like.producer";
 import { LikeJob } from "../interfaces/like.interface";
 import { LikeEvent } from "../enum/likes.enum";
+import { redisConnection } from "../config/redis";
 export class LikeController {
   async like(req: Request, res: Response) {
-    // 1. create a Job for message Queue.
     const { userId, postId } = req.body;
-    // 2. Insert that Job into message Queue along with redis key value
+    // Store key:value in redis for deduplication.
+    const dedupKey = `like:${userId}:${postId}`;
+    const isFirstLike = await redisConnection.setnx(dedupKey, 1);
+    await redisConnection.expireat(dedupKey, 86400);
+
+    if (!isFirstLike) {
+      // Duplicate request
+      res.status(202).json({ message: "Already Liked" });
+    }
+
+    // Insert that Job into message Queue along with redis key value
     if (userId && postId) {
       await addLikeJob({
         userId,

@@ -22,3 +22,8 @@ export * from './enums';
  * 
  */
 export type Like = Prisma.LikeModel
+/**
+ * Model Post
+ * 
+ */
+export type Post = Prisma.PostModel
