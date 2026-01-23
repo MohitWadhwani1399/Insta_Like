@@ -29,10 +29,4 @@ export class LikeController {
       res.status(400).json({ messsage: "Bad request!!" });
     }
   }
-
-  async unlike(req: Request, res: Response) {
-    // 1. create a Job for message Queue.
-    // 2. Insert that JOb into message Queue along with redis key value
-    // 3. Return acknowledgement to Client.
-  }
 }
